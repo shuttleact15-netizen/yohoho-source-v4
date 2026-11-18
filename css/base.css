@@ -1,0 +1,40 @@
+/* ============================================================
+   土台（base.css）
+   色・フォント・全体の枠・共通部品だけここを触る
+
+   【ファイル構成】index.html は骨組みだけ。見た目と動きは全部別ファイル。
+     CSS: base.css（土台）/ lobby.css（ロビー）/ rooms.css（各部屋）
+          gacha.css（ガチャ部屋）/ game.css（バトル・結果画面）
+     JS : data.js（データ）/ lobby.js（ロビー）/ gacha.js（ガチャ）
+          game.js（バトル本体）/ input.js（操作）
+   ============================================================ */
+*{box-sizing:border-box}
+:root{
+  --ink:#fff7e6;
+  --navy:#0b2748;
+  --navy2:#12325e;
+  --sea:#1479b8;
+  --sea-bright:#25a6e8;
+  --gold:#ffc93c;
+  --gold-dark:#c98f00;
+  --red:#ff4757;
+  --teal:#2ed573;
+  --purple:#a55eea;
+  --paper:#fff3d6;
+}
+html,body{margin:0;height:100%;overflow:hidden;background:#082f52;font-family:"M PLUS Rounded 1c",system-ui,sans-serif;color:var(--ink)}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+#wrap{position:fixed;inset:0;display:flex;flex-direction:column;background:#082f52}
+#stage{position:relative;flex:1;min-height:0;overflow:hidden}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+
+/* バトル中の細い上バー（ロビー表示中はロビー側の上バーが主役） */
+#topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:rgba(8,24,48,.96);border-bottom:3px solid #00000033;z-index:5;flex-wrap:wrap}
+.pill{background:#00000055;border:2px solid #ffffff22;border-radius:999px;padding:6px 12px;font-weight:800;font-size:14px;white-space:nowrap}
+.pill b{color:var(--gold)}
+#restartTop{background:var(--gold);border:0;border-radius:999px;padding:8px 16px;font-weight:900;color:#231900;min-height:40px}
+
+.bigbtn{background:var(--gold);color:#231900;border:0;border-radius:16px;padding:14px 28px;font-size:20px;font-weight:900;width:100%;box-shadow:0 6px 0 var(--gold-dark)}
+.bigbtn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--gold-dark)}
+kbd{background:#fff;color:#111;border-radius:6px;padding:1px 6px;font-family:inherit;font-weight:900}

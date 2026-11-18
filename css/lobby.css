@@ -1,0 +1,103 @@
+/* ============================================================
+   部屋1：待ち受けロビー（lobby.css）
+   参考画像の「中央にキャラ／左メニュー／下に大きくプレイ」を
+   海賊船の甲板ロビーとしてアレンジした画面
+   ============================================================ */
+.lobby{
+  position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;overflow:auto;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 18%, #2e9be0 0%, #1773b4 48%, #0d4f83 78%, #093a63 100%);
+}
+.lobby::before{ /* 海のきらめき＋ドクロの透かし */
+  content:"☠";position:absolute;right:-30px;top:16%;font-size:300px;color:#ffffff10;pointer-events:none;line-height:1;
+}
+.lobby::after{ /* 甲板の床 */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:92px;pointer-events:none;
+  background:repeating-linear-gradient(90deg,#8a5a24 0 86px,#7a4e1e 86px 90px),linear-gradient(180deg,#9c6a2d,#7a4e1e);
+  opacity:.9;border-top:6px solid #5d3a12;
+}
+.lobby>*{position:relative;z-index:1}
+
+/* --- 上バー：プロフィールと財宝 --- */
+.lobby-top{display:flex;align-items:center;gap:8px;padding:10px 12px 4px;flex-wrap:wrap}
+.profile{display:flex;align-items:center;gap:9px;background:#0b2b52cc;border:2px solid #ffffff2e;border-radius:14px;padding:5px 12px 5px 6px;min-height:48px}
+.profile .avatar{width:38px;height:38px;border-radius:10px;background:linear-gradient(180deg,#ffdf6b,#f5a623);display:grid;place-items:center;font-size:23px;border:2px solid #00000030}
+.profile b{font-size:15px;line-height:1.1}
+.profile small{display:block;color:#9fd8ff;font-weight:800;font-size:11px}
+.res{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.res .pill{background:#0b2b52cc}
+.hamb{background:#0b2b52cc;border:2px solid #ffffff2e;color:#fff;border-radius:12px;width:48px;height:48px;font-size:20px;font-weight:900}
+
+/* --- 中央ステージ --- */
+.lobby-main{flex:1;display:grid;grid-template-columns:118px 1fr 132px;gap:10px;padding:8px 14px 0;min-height:340px}
+.rail{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.rail-btn{
+  background:linear-gradient(180deg,#1b4f86,#123a68);border:2px solid #ffffff2e;border-bottom:5px solid #00000045;
+  color:#fff;border-radius:16px;padding:10px 6px;font-weight:900;font-size:13px;line-height:1.35;min-height:64px;position:relative;text-align:center;
+}
+.rail-btn .ic{font-size:24px;display:block}
+.rail-btn.active{background:linear-gradient(180deg,#ffb62e,#f08c00);color:#2a1800;border-color:#ffe9a8}
+.rail-btn .badge{position:absolute;top:-7px;right:-5px;background:#2ed573;color:#06351a;border-radius:999px;font-size:11px;padding:2px 7px;border:2px solid #fff}
+.chat-bubble{background:#fff;color:#123;border-radius:14px;padding:8px 10px;font-weight:800;font-size:12px;line-height:1.4;position:relative}
+.chat-bubble small{color:#2e9be0;font-weight:900;display:block}
+.chat-bubble::after{content:"";position:absolute;left:-7px;top:22px;border:8px solid transparent;border-right-color:#fff;border-left:0}
+.crew-slot{
+  border:3px dashed #ffffff55;border-radius:16px;min-height:74px;display:grid;place-items:center;font-size:30px;color:#fff;background:#ffffff12;font-weight:900;
+}
+.crew-label{font-size:11px;font-weight:900;text-align:center;color:#cfeaff}
+.create-btn{background:var(--gold);border:0;border-bottom:5px solid var(--gold-dark);color:#231900;border-radius:14px;padding:10px 6px;font-weight:900;font-size:14px;min-height:52px}
+
+.hero-stage{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:6px;min-width:0}
+.hero-badges{display:flex;gap:8px;margin-bottom:2px}
+.hero-badge{background:#0b2b52e0;border:2px solid #ffc93c;border-radius:12px;padding:4px 12px;font-weight:900;font-size:14px;text-align:center;line-height:1.25}
+.hero-badge small{display:block;color:#ffc93c;font-size:10px;letter-spacing:.06em}
+.hero-figure{position:relative;width:min(300px,62vw);aspect-ratio:1/1.08;display:grid;place-items:center;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(prefers-reduced-motion:reduce){.hero-figure{animation:none}}
+.hero-body{
+  width:72%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:7px solid #00000035;
+  box-shadow:0 22px 0 -6px #00000030, inset 0 -18px 0 #00000022;
+}
+.hero-emoji{font-size:clamp(96px,20vw,148px);line-height:1;filter:drop-shadow(0 6px 0 #00000030)}
+.hero-body svg{width:94%;height:94%;display:block}
+.hero-weapon{position:absolute;right:2%;bottom:16%;font-size:52px;transform:rotate(-12deg)}
+.hero-shadow{width:62%;height:22px;background:#00000038;border-radius:50%;margin-top:-8px}
+.hero-name{font-size:clamp(22px,4.5vw,34px);font-weight:900;text-shadow:0 3px 0 #00000045;margin-top:8px;text-align:center}
+.hero-quote{font-weight:800;font-size:13px;color:#dff3ff;text-align:center}
+.hero-quote b{color:var(--gold)}
+
+/* --- 下ドック：宝箱／イベント／プレイ --- */
+.lobby-bottom{display:grid;grid-template-columns:190px 1fr 250px;gap:12px;align-items:end;padding:10px 14px 16px}
+.mini-cards{display:flex;gap:10px}
+.mini-card{background:#0b2b52d9;border:2px solid #ffffff2e;border-radius:14px;padding:8px 10px;font-weight:900;font-size:12px;min-width:86px;text-align:center}
+.mini-card .ic{font-size:26px;display:block}
+.mini-card .bar{height:8px;background:#00000088;border-radius:99px;overflow:hidden;margin-top:5px}
+.mini-card .bar i{display:block;height:100%;background:var(--teal)}
+.mini-card .bar i.fill-10{width:10%}
+.mini-card .bar i.fill-90{width:90%}
+.event-card{
+  background:linear-gradient(180deg,#2a1650,#1c0f38);border:3px solid #7b4fd0;border-radius:16px;padding:10px 14px;display:flex;gap:12px;align-items:center;min-height:78px;
+}
+.event-card .gem{font-size:38px}
+.event-card b{font-size:clamp(16px,2.6vw,21px);display:block}
+.event-card small{color:#cdbcf5;font-weight:800}
+.event-card .timer{margin-left:auto;text-align:right;font-weight:900;font-size:12px;color:#ffe9a8;white-space:nowrap}
+.play-btn{
+  background:linear-gradient(180deg,#ffd94d,#ffb300);border:0;border-bottom:8px solid #c77700;color:#2a1800;
+  font-size:clamp(26px,4.5vw,38px);font-weight:900;border-radius:18px;padding:16px 10px;letter-spacing:.04em;
+  transform:skewX(-4deg);box-shadow:0 12px 28px #00000045;min-height:78px;
+}
+.play-btn:active{transform:skewX(-4deg) translateY(4px);border-bottom-width:3px}
+.play-btn small{display:block;font-size:12px;font-weight:900}
+
+@media(max-width:760px){
+  .lobby-main{grid-template-columns:86px 1fr 92px;gap:8px;padding:6px 8px 0}
+  .rail-btn{font-size:11px;min-height:56px;padding:8px 2px}
+  .rail-btn .ic{font-size:20px}
+  .chat-bubble{display:none}
+  .crew-slot{min-height:58px;font-size:24px}
+  .lobby-bottom{grid-template-columns:1fr 1fr;padding:8px 10px 14px}
+  .mini-cards{display:none}
+  .event-card{grid-column:1/-1;order:2;min-height:64px}
+  .play-btn{grid-column:1/-1;order:1}
+}
